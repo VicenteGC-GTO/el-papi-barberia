@@ -11,7 +11,7 @@
 const CONFIG = {
   // Número de WhatsApp de la barbería, en formato internacional
   // SIN signos ni espacios: 52 (México) + 10 dígitos.
-  whatsappNumber: "whatsappNumber: "524171005878",", // <-- CAMBIA ESTO por tu número real
+  whatsappNumber: "524171005878", // <-- CAMBIA ESTO por tu número real
 
   // Datos de EmailJS (los obtienes en https://www.emailjs.com).
   // Explico paso a paso cómo conseguirlos en el mensaje de chat.
