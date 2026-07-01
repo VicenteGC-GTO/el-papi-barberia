@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Papi Barbería | Productos para el cuidado del cabello y la barba</title>
+  <meta name="description" content="El Papi Barbería: cera, cera gel, minoxidil y más productos para tu cabello y barba." />
+
+  <!-- Google Fonts: Bebas Neue para títulos estilo letrero de barbería, Inter para texto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- SDK de EmailJS: nos permite enviar el formulario de contacto sin necesidad de un servidor propio -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+  <!-- ============ ENCABEZADO / NAVEGACIÓN ============ -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#inicio" class="logo">
+        <span class="logo__mark">EP</span>
+        <span class="logo__text">EL PAPI<small>Barbería</small></span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#catalogo">Productos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <div class="header__actions">
+        <button class="cart-toggle" id="cartToggle" aria-label="Abrir carrito de compras">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h7.2a2 2 0 0 0 2-1.6L21 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="20.5" r="1.3"/><circle cx="17.5" cy="20.5" r="1.3"/></svg>
+          <span class="cart-toggle__count" id="cartCount">0</span>
+        </button>
+        <button class="nav-burger" id="navBurger" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Franja tipo "barber pole": el guiño de color al oficio, usado con moderación como firma visual -->
+    <div class="barber-stripe" aria-hidden="true"></div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inicio">
+    <div class="container hero__inner">
+      <p class="eyebrow">Desde el sillón, para tu casa</p>
+      <h1 class="hero__title">Cuida tu corte<br>todos los días</h1>
+      <p class="hero__subtitle">
+        Ceras, geles y tratamientos que usamos en el sillón de El Papi,
+        ahora para que los tengas en tu baño.
+      </p>
+      <div class="hero__actions">
+        <a href="#catalogo" class="btn btn--primary">Ver productos</a>
+        <a href="#contacto" class="btn btn--ghost">Contactar</a>
+      </div>
+    </div>
+    <div class="hero__badge" aria-hidden="true">
+      <span>100%</span>
+      <small>Original</small>
+    </div>
+  </section>
+
+  <!-- ============ CATÁLOGO ============ -->
+  <section class="catalog" id="catalogo">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">El mostrador</p>
+        <h2>Nuestros productos</h2>
+      </div>
+
+      <!-- Aquí no escribimos las tarjetas a mano: JavaScript las genera desde
+           la lista "products" en app.js. Así, para agregar un producto nuevo,
+           solo se edita el arreglo en app.js y no este HTML. -->
+      <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="contact" id="contacto">
+    <div class="container contact__inner">
+      <div class="contact__info">
+        <p class="eyebrow">Escríbenos</p>
+        <h2>¿Dudas sobre un producto o tu pedido?</h2>
+        <p class="contact__text">
+          Mándanos tus datos y te contestamos directo, o si prefieres algo
+          más rápido, usa el botón de WhatsApp de la esquina.
+        </p>
+        <ul class="contact__details">
+          <li><strong>Barbería:</strong> El Papi</li>
+          <li><strong>Horario:</strong> Lunes a sábado, 10:00–20:00</li>
+          <li><strong>WhatsApp:</strong> Botón flotante &rarr;</li>
+        </ul>
+      </div>
+
+      <form class="contact__form" id="contactForm">
+        <div class="field">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" required placeholder="Tu nombre" />
+        </div>
+        <div class="field">
+          <label for="email">Correo</label>
+          <input type="email" id="email" name="email" required placeholder="tu@correo.com" />
+        </div>
+        <div class="field">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="4" required placeholder="Cuéntanos qué necesitas..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary" id="contactSubmit">Enviar mensaje</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> El Papi Barbería</span>
+      <span class="footer__made">Sitio hecho por Vicente</span>
+    </div>
+  </footer>
+
+  <!-- ============ CARRITO (panel lateral) ============ -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de compras">
+    <div class="cart-drawer__header">
+      <h3>Tu carrito</h3>
+      <button id="cartClose" aria-label="Cerrar carrito">&times;</button>
+    </div>
+    <div class="cart-drawer__items" id="cartItems">
+      <!-- Se llena dinámicamente con JS -->
+    </div>
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__total">
+        <span>Subtotal</span>
+        <strong id="cartTotal">$0.00</strong>
+      </div>
+      <button class="btn btn--primary btn--full" id="checkoutBtn">
+        Pedir por WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============ BOTÓN FLOTANTE DE WHATSAPP ============ -->
+  <a href="#" id="whatsappFloat" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.694 4.61 1.892 6.484L4 29l7.702-1.856A11.94 11.94 0 0 0 16 27c6.627 0 12-5.373 12-12S22.628 3 16.001 3zm0 21.6c-1.98 0-3.85-.53-5.454-1.454l-.39-.226-4.573 1.102 1.13-4.457-.254-.406A9.55 9.55 0 0 1 5.4 15c0-5.85 4.75-10.6 10.6-10.6S26.6 9.15 26.6 15 21.85 24.6 16 24.6zm5.42-7.94c-.297-.148-1.757-.867-2.03-.966-.272-.1-.47-.148-.668.148-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.148-1.254-.462-2.388-1.472-.883-.787-1.48-1.76-1.653-2.057-.173-.297-.018-.457.13-.605.134-.133.297-.347.446-.52.148-.174.198-.298.297-.496.099-.198.05-.372-.025-.52-.074-.148-.668-1.612-.916-2.208-.24-.578-.486-.5-.668-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.017-1.04 2.48s1.065 2.876 1.213 3.074c.148.198 2.096 3.2 5.08 4.487.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.757-.718 2.005-1.412.248-.694.248-1.29.173-1.412-.074-.124-.272-.198-.57-.347z"/></svg>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>

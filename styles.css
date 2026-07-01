@@ -1,0 +1,554 @@
+/* =============================================================
+   EL PAPI BARBERÍA — HOJA DE ESTILOS
+   Paleta: negro cálido + latón envejecido + guiño al barber pole
+   ============================================================= */
+
+/* ---------- 1. VARIABLES (Design Tokens) ----------
+   Definir los colores y fuentes como variables nos permite
+   cambiar la identidad visual completa editando solo esta zona. */
+:root {
+  --color-bg: #17110d;          /* negro cálido, como madera quemada */
+  --color-surface: #211812;     /* superficie de tarjetas, un tono más claro */
+  --color-surface-2: #2a1e16;   /* superficie hover / bordes internos */
+  --color-accent: #b5842a;      /* latón envejecido — botones, acentos */
+  --color-accent-light: #d9ab52;
+  --color-oxblood: #7a2530;     /* rojo vino — segundo acento */
+  --color-text: #f2e9da;        /* texto principal, crema cálido */
+  --color-text-muted: #b3a38c;  /* texto secundario */
+  --color-border: #3a2b1f;
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --radius: 4px;
+  --radius-lg: 10px;
+  --container-width: 1140px;
+  --transition: 0.25s ease;
+}
+
+/* ---------- 2. RESET BÁSICO ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Accesibilidad: foco visible siempre, sin importar el elemento */
+:focus-visible {
+  outline: 2px solid var(--color-accent-light);
+  outline-offset: 2px;
+}
+
+/* Respeta a quienes prefieren menos movimiento en pantalla */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------- 3. TIPOGRAFÍA GENERAL ---------- */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-accent-light);
+  margin-bottom: 10px;
+}
+
+/* ---------- 4. BOTONES ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform var(--transition), background var(--transition), opacity var(--transition);
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #17110d;
+}
+.btn--primary:hover { background: var(--color-accent-light); transform: translateY(-1px); }
+
+.btn--ghost {
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+.btn--ghost:hover { border-color: var(--color-accent); color: var(--color-accent-light); }
+
+.btn--full { width: 100%; }
+
+.btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+/* ---------- 5. HEADER / NAV ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(23, 17, 13, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; }
+
+.logo__mark {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  color: var(--color-accent-light);
+  font-size: 1rem;
+}
+
+.logo__text {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.logo__text small {
+  font-family: var(--font-body);
+  text-transform: none;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+}
+
+.nav { display: flex; gap: 32px; }
+.nav a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+}
+.nav a:hover { color: var(--color-accent-light); }
+
+.header__actions { display: flex; align-items: center; gap: 14px; }
+
+.cart-toggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  color: var(--color-text);
+}
+.cart-toggle svg { width: 22px; height: 22px; }
+.cart-toggle__count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--color-oxblood);
+  color: var(--color-text);
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  padding: 0 3px;
+}
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 26px;
+}
+.nav-burger span { height: 2px; background: var(--color-text); border-radius: 2px; }
+
+/* Franja "barber pole": el elemento firma del diseño.
+   Rayas diagonales rojo/crema/azul, referencia directa al oficio,
+   usada en una sola línea delgada — no como fondo general. */
+.barber-stripe {
+  height: 6px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-oxblood) 0 14px,
+    var(--color-text) 14px 28px,
+    #2c3e6b 28px 42px
+  );
+  background-size: 200% 100%;
+  animation: stripe-slide 12s linear infinite;
+}
+@keyframes stripe-slide {
+  from { background-position: 0 0; }
+  to { background-position: 200px 0; }
+}
+
+/* ---------- 6. HERO ---------- */
+.hero {
+  position: relative;
+  padding: 100px 0 120px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(181, 132, 42, 0.14), transparent 55%);
+}
+
+.hero__inner { max-width: 640px; }
+
+.hero__title {
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  margin-bottom: 22px;
+}
+
+.hero__subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Insignia flotante tipo sello, refuerza la idea de producto original */
+.hero__badge {
+  position: absolute;
+  right: 8%;
+  top: 40%;
+  width: 108px;
+  height: 108px;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  transform: rotate(-14deg);
+  color: var(--color-accent-light);
+}
+.hero__badge span { font-family: var(--font-display); font-size: 1.6rem; }
+.hero__badge small { font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; }
+
+@media (max-width: 720px) {
+  .hero__badge { display: none; }
+}
+
+/* ---------- 7. SECCIÓN GENERAL / TÍTULOS ---------- */
+.section-heading { margin-bottom: 48px; }
+.section-heading h2 { font-size: clamp(2rem, 4vw, 2.8rem); }
+
+.catalog { padding: 100px 0; }
+
+/* ---------- 8. TARJETAS DE PRODUCTO (estilo etiqueta de frasco) ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+.product-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.product-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+}
+
+.product-card__image {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: var(--color-surface-2);
+}
+.product-card__image img { width: 100%; height: 100%; object-fit: cover; }
+
+.product-card__category {
+  font-size: 0.68rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-light);
+  margin-bottom: 6px;
+}
+
+.product-card__name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.product-card__desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Precio con forma de "sello estampado" */
+.product-card__price {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-accent-light);
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.product-card__price small { display: block; font-size: 0.6rem; font-family: var(--font-body); color: var(--color-text-muted); }
+
+.product-card__add {
+  background: var(--color-accent);
+  color: #17110d;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: background var(--transition);
+  flex-grow: 1;
+}
+.product-card__add:hover { background: var(--color-accent-light); }
+.product-card__add:disabled {
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+/* ---------- 9. CONTACTO ---------- */
+.contact { padding: 100px 0; background: var(--color-surface); }
+
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.contact__text { color: var(--color-text-muted); margin: 18px 0 26px; }
+
+.contact__details { list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.92rem; }
+.contact__details strong { color: var(--color-accent-light); font-weight: 600; }
+
+.contact__form { display: flex; flex-direction: column; gap: 18px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 0.82rem; font-weight: 600; color: var(--color-text-muted); }
+
+.field input,
+.field textarea {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  resize: vertical;
+  transition: border-color var(--transition);
+}
+.field input:focus,
+.field textarea:focus { border-color: var(--color-accent); }
+
+.form-status { font-size: 0.85rem; min-height: 1.2em; }
+.form-status[data-state="success"] { color: #7bc47f; }
+.form-status[data-state="error"] { color: #e08585; }
+
+@media (max-width: 800px) {
+  .contact__inner { grid-template-columns: 1fr; }
+}
+
+/* ---------- 10. FOOTER ---------- */
+.footer { padding: 28px 0; border-top: 1px solid var(--color-border); }
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ---------- 11. CARRITO (panel lateral deslizable) ---------- */
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  z-index: 50;
+}
+.cart-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(400px, 92vw);
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition);
+}
+.cart-drawer.is-open { transform: translateX(0); }
+
+.cart-drawer__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+.cart-drawer__header h3 { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.5px; }
+.cart-drawer__header button { font-size: 1.6rem; color: var(--color-text-muted); line-height: 1; }
+
+.cart-drawer__items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-item { display: flex; gap: 12px; align-items: center; }
+.cart-item__image {
+  width: 56px; height: 56px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--color-surface-2);
+  flex-shrink: 0;
+}
+.cart-item__image img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item__info { flex: 1; min-width: 0; }
+.cart-item__name { font-size: 0.9rem; font-weight: 600; }
+.cart-item__price { font-size: 0.82rem; color: var(--color-text-muted); }
+
+.cart-item__qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.cart-item__qty button {
+  width: 22px; height: 22px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  display: grid;
+  place-items: center;
+}
+.cart-item__remove {
+  font-size: 0.75rem;
+  color: var(--color-oxblood);
+  text-decoration: underline;
+}
+
+.cart-empty { color: var(--color-text-muted); font-size: 0.9rem; text-align: center; padding: 40px 0; }
+
+.cart-drawer__footer {
+  padding: 20px 24px 26px;
+  border-top: 1px solid var(--color-border);
+}
+.cart-drawer__total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+.cart-drawer__total strong { font-family: var(--font-display); color: var(--color-accent-light); font-size: 1.3rem; }
+
+/* ---------- 12. BOTÓN FLOTANTE DE WHATSAPP ---------- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  background: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  z-index: 45;
+  transition: transform var(--transition);
+}
+.whatsapp-float svg { width: 30px; height: 30px; }
+.whatsapp-float:hover { transform: scale(1.08); }
+
+/* ---------- 13. RESPONSIVE: NAV MÓVIL ---------- */
+@media (max-width: 720px) {
+  .nav {
+    position: fixed;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    flex-direction: column;
+    padding: 20px 24px;
+    gap: 18px;
+    transform: translateY(-140%);
+    transition: transform var(--transition);
+    z-index: 39;
+  }
+  .nav.is-open { transform: translateY(0); }
+  .nav-burger { display: flex; }
+}
