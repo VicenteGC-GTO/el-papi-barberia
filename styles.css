@@ -652,3 +652,9 @@ h1, h2, h3 {
   .location__inner { grid-template-columns: 1fr; }
   .location__map { height: 280px; }
 }
+
+.logo__img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+}
