@@ -605,3 +605,10 @@ h1, h2, h3 {
   .location__inner { grid-template-columns: 1fr; }
   .location__map { height: 280px; }
 }
+.logo__img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: luminosity;  /* ← esto quita el fondo blanco */
+  filter: brightness(1.2);     /* ← lo hace un poco más brillante */
+}
