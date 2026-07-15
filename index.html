@@ -6,14 +6,12 @@
   <title>El Papi Barbería | Productos para el cuidado del cabello y la barba</title>
   <meta name="description" content="El Papi Barbería: cera, cera gel, minoxidil y más productos para tu cabello y barba." />
 
-  <!-- Google Fonts: Bebas Neue para títulos estilo letrero de barbería, Inter para texto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- SDK de EmailJS: nos permite enviar el formulario de contacto sin necesidad de un servidor propio -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
@@ -22,16 +20,15 @@
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="#inicio" class="logo">
-        <span class="logo__mark">EP</span>
-        <span class="logo__text">EL PAPI<small>Barbería</small></span>
+        <img src="imagenes/gif.gif" alt="El Papi Barber Shop" class="logo__img">
       </a>
 
       <nav class="nav" id="nav">
-  <a href="#inicio">Inicio</a>
-  <a href="#catalogo">Productos</a>
-  <a href="#ubicacion">Ubicación</a>
-  <a href="#contacto">Contacto</a>
-</nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#catalogo">Productos</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
 
       <div class="header__actions">
         <button class="cart-toggle" id="cartToggle" aria-label="Abrir carrito de compras">
@@ -43,7 +40,6 @@
         </button>
       </div>
     </div>
-    <!-- Franja tipo "barber pole": el guiño de color al oficio, usado con moderación como firma visual -->
     <div class="barber-stripe" aria-hidden="true"></div>
   </header>
 
@@ -74,11 +70,56 @@
         <p class="eyebrow">El mostrador</p>
         <h2>Nuestros productos</h2>
       </div>
-
-      <!-- Aquí no escribimos las tarjetas a mano: JavaScript las genera desde
-           la lista "products" en app.js. Así, para agregar un producto nuevo,
-           solo se edita el arreglo en app.js y no este HTML. -->
       <div class="product-grid" id="productGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ UBICACIÓN ============ -->
+  <section class="location" id="ubicacion">
+    <div class="container location__inner">
+      <div class="location__info">
+        <p class="eyebrow">Encuéntranos</p>
+        <h2>¿Dónde estamos?</h2>
+        <p class="location__text">
+          Estamos ubicados en el corazón de Acámbaro, en la esquina de
+          <strong>Calle Primera de Mayo</strong> con <strong>Nicolás Bravo</strong>,
+          justo en Zona Centro.
+        </p>
+        <ul class="location__details">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
+            Zona Centro, 38600 Acámbaro, Gto.
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Primera de Mayo esquina con Nicolás Bravo
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>
+            Lunes a Sábado, 10:00 – 20:00
+          </li>
+        </ul>
+        <a 
+          href="https://www.google.com/maps/place/THE+BARBER+VISION/@20.0296993,-100.72534,17z" 
+          target="_blank" 
+          rel="noopener" 
+          class="btn btn--primary location__btn">
+          Abrir en Google Maps
+        </a>
+      </div>
+
+      <div class="location__map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3734.8!2d-100.7252334!3d20.0296917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842cd66c92ccd319%3A0x1a847bdc1d144943!2sThe%20Barber%20Vision!5e0!3m2!1ses!2smx!4v1234567890"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación de El Papi Barbería">
+        </iframe>
+      </div>
     </div>
   </section>
 
@@ -118,54 +159,6 @@
     </div>
   </section>
 
-  <!-- ============ UBICACIÓN ============ -->
-<section class="location" id="ubicacion">
-  <div class="container location__inner">
-    <div class="location__info">
-      <p class="eyebrow">Encuéntranos</p>
-      <h2>¿Dónde estamos?</h2>
-      <p class="location__text">
-        Estamos ubicados en el corazón de Acámbaro, en la esquina de
-        <strong>Calle Primera de Mayo</strong> con <strong>Nicolás Bravo</strong>,
-        justo en Zona Centro.
-      </p>
-      <ul class="location__details">
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
-          Zona Centro, 38600 Acámbaro, Gto.
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Primera de Mayo esquina con Nicolás Bravo
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>
-          Lunes a Sábado, 10:00 – 20:00
-        </li>
-      </ul>
-      <a 
-        href="https://www.google.com/maps/place/THE+BARBER+VISION/@20.0296993,-100.72534,17z" 
-        target="_blank" 
-        rel="noopener" 
-        class="btn btn--primary location__btn">
-        Abrir en Google Maps
-      </a>
-    </div>
-
-    <div class="location__map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3734.8!2d-100.7252334!3d20.0296917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842cd66c92ccd319%3A0x1a847bdc1d144943!2sThe%20Barber%20Vision!5e0!3m2!1ses!2smx!4v1234567890"
-        width="100%"
-        height="100%"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Ubicación de El Papi Barbería">
-      </iframe>
-    </div>
-  </div>
-</section>
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container footer__inner">
@@ -181,9 +174,7 @@
       <h3>Tu carrito</h3>
       <button id="cartClose" aria-label="Cerrar carrito">&times;</button>
     </div>
-    <div class="cart-drawer__items" id="cartItems">
-      <!-- Se llena dinámicamente con JS -->
-    </div>
+    <div class="cart-drawer__items" id="cartItems"></div>
     <div class="cart-drawer__footer">
       <div class="cart-drawer__total">
         <span>Subtotal</span>
