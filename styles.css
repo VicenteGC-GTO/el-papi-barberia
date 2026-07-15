@@ -3,18 +3,16 @@
    Paleta: negro cálido + latón envejecido + guiño al barber pole
    ============================================================= */
 
-/* ---------- 1. VARIABLES (Design Tokens) ----------
-   Definir los colores y fuentes como variables nos permite
-   cambiar la identidad visual completa editando solo esta zona. */
+/* ---------- 1. VARIABLES (Design Tokens) ---------- */
 :root {
-  --color-bg: #17110d;          /* negro cálido, como madera quemada */
-  --color-surface: #211812;     /* superficie de tarjetas, un tono más claro */
-  --color-surface-2: #2a1e16;   /* superficie hover / bordes internos */
-  --color-accent: #b5842a;      /* latón envejecido — botones, acentos */
+  --color-bg: #17110d;
+  --color-surface: #211812;
+  --color-surface-2: #2a1e16;
+  --color-accent: #b5842a;
   --color-accent-light: #d9ab52;
-  --color-oxblood: #7a2530;     /* rojo vino — segundo acento */
-  --color-text: #f2e9da;        /* texto principal, crema cálido */
-  --color-text-muted: #b3a38c;  /* texto secundario */
+  --color-oxblood: #7a2530;
+  --color-text: #f2e9da;
+  --color-text-muted: #b3a38c;
   --color-border: #3a2b1f;
 
   --font-display: 'Bebas Neue', sans-serif;
@@ -51,13 +49,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 0 24px;
 }
 
-/* Accesibilidad: foco visible siempre, sin importar el elemento */
 :focus-visible {
   outline: 2px solid var(--color-accent-light);
   outline-offset: 2px;
 }
 
-/* Respeta a quienes prefieren menos movimiento en pantalla */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
   html { scroll-behavior: auto; }
@@ -157,6 +153,13 @@ h1, h2, h3 {
   margin-top: 3px;
 }
 
+/* ---------- LOGO IMAGEN ---------- */
+.logo__img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+}
+
 .nav { display: flex; gap: 32px; }
 .nav a {
   font-size: 0.9rem;
@@ -201,9 +204,6 @@ h1, h2, h3 {
 }
 .nav-burger span { height: 2px; background: var(--color-text); border-radius: 2px; }
 
-/* Franja "barber pole": el elemento firma del diseño.
-   Rayas diagonales rojo/crema/azul, referencia directa al oficio,
-   usada en una sola línea delgada — no como fondo general. */
 .barber-stripe {
   height: 6px;
   background: repeating-linear-gradient(
@@ -245,7 +245,6 @@ h1, h2, h3 {
 
 .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
-/* Insignia flotante tipo sello, refuerza la idea de producto original */
 .hero__badge {
   position: absolute;
   right: 8%;
@@ -273,7 +272,7 @@ h1, h2, h3 {
 
 .catalog { padding: 100px 0; }
 
-/* ---------- 8. TARJETAS DE PRODUCTO (estilo etiqueta de frasco) ---------- */
+/* ---------- 8. TARJETAS DE PRODUCTO ---------- */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -333,7 +332,6 @@ h1, h2, h3 {
   gap: 12px;
 }
 
-/* Precio con forma de "sello estampado" */
 .product-card__price {
   font-family: var(--font-display);
   font-size: 1.3rem;
@@ -420,7 +418,7 @@ h1, h2, h3 {
   gap: 8px;
 }
 
-/* ---------- 11. CARRITO (panel lateral deslizable) ---------- */
+/* ---------- 11. CARRITO ---------- */
 .cart-overlay {
   position: fixed;
   inset: 0;
@@ -552,7 +550,8 @@ h1, h2, h3 {
   .nav.is-open { transform: translateY(0); }
   .nav-burger { display: flex; }
 }
-/* ---------- UBICACIÓN ---------- */
+
+/* ---------- 14. UBICACIÓN ---------- */
 .location { padding: 100px 0; }
 
 .location__inner {
@@ -600,58 +599,9 @@ h1, h2, h3 {
   border: 1px solid var(--color-border);
 }
 
-/* ---------- UBICACIÓN ---------- */
-.location { padding: 100px 0; }
+.location__btn { margin-top: 8px; }
 
-.location__inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
+@media (max-width: 800px) {
+  .location__inner { grid-template-columns: 1fr; }
+  .location__map { height: 280px; }
 }
-
-.location__text {
-  color: var(--color-text-muted);
-  margin: 18px 0 26px;
-  line-height: 1.7;
-}
-
-.location__details {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-
-.location__details li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.92rem;
-  color: var(--color-text-muted);
-}
-
-.location__details svg {
-  color: var(--color-accent-light);
-  flex-shrink: 0;
-}
-
-.location__details strong {
-  color: var(--color-accent-light);
-}
-
-.location__map {
-  height: 380px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-}
-
-
-.logo__img {
-  height: 55px;
-  width: auto;
-  object-fit: contain;
-}
-
